@@ -660,6 +660,8 @@ class DjangoModelFactory(Factory):
                 ).order_by('-pk')[0]
         except IndexError:
             return 1
+        except TypeError:
+            return manager.count() + 1
 
     @classmethod
     def _create(cls, target_class, *args, **kwargs):
